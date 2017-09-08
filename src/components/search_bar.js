@@ -12,16 +12,20 @@ class SearchBar extends Component {
   // Every class based component must have a render method
   render() {
     return (
-      <div>
+      <div className="search-bar">
         <input
           //controlled component. When user types it doesn't actually change value in input. Only fires an event. Value is always = to state.
           value={this.state.term}
-          onChange={event => this.setState({ term: event.target.value })}
+          onChange={event => this.onInputChange(event.target.value)}
         />
       </div>
     );
   }
 
+  onInputChange(term) {
+    this.setState({ term });
+    this.props.onSearchTermChange(term);
+  }
   // This code is not es6. The above is how an es6 function is called
   // on or handle + name of element + name of event
   // event object comes with each event handler
